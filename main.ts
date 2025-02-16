@@ -1,6 +1,6 @@
-import { Env, VirtualFileSystemDO, VirtualFS } from "./fs";
+import { Env, VirtualFileSystemBlockDO, VirtualFS } from "./blocks";
 
-export { VirtualFileSystemDO };
+export { VirtualFileSystemBlockDO };
 
 // Example Worker that uses the Virtual File System
 export default {
@@ -21,19 +21,27 @@ export default {
         }),
       );
 
+      await fs.writeFile("myapp/config/hello-world.txt", "I love DO 🧡");
+
       // Read directory contents
       const files = await fs.readdir("myapp/config");
 
       // Read file contents
-      const content = await fs.readFile("myapp/config/settings.json", "utf8");
+      const settings = await fs.readFile("myapp/config/settings.json", "utf8");
+      const hello = await fs.readFile("myapp/config/hello-world.txt", "utf8");
 
       return new Response(
-        JSON.stringify({
-          files,
-          content,
-        }),
+        JSON.stringify(
+          {
+            files,
+            settings,
+            hello,
+          },
+          undefined,
+          2,
+        ),
         {
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json;charset=utf-8" },
         },
       );
     } catch (error: any) {

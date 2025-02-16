@@ -5,8 +5,8 @@ dev.port = 3000
 
 [[durable_objects.bindings]]
 name = "VIRTUAL_FS"
-class_name = "VirtualFileSystemDO"
+class_name = "VirtualFileSystemBlockDO"
 
 [[migrations]]
 tag = "v1"
-new_sqlite_classes = ["VirtualFileSystemDO"]
+new_sqlite_classes = ["VirtualFileSystemBlockDO"]

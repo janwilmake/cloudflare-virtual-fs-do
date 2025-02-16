@@ -6,3 +6,5 @@ Inspired by [this post](https://x.com/samwillis/status/1891152072575173100) I wa
 Running main and going to localhost:3000 shows the initial version seems to be working! You can use it easily by copying `fs.ts` into your worker!
 
 Maybe I'll make a package out of this!
+
+![](show.png)
