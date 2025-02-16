@@ -30,12 +30,20 @@ export default {
       const settings = await fs.readFile("myapp/config/settings.json", "utf8");
       const hello = await fs.readFile("myapp/config/hello-world.txt", "utf8");
 
-      await fs.writeFile(
-        "image/desired-ui.png",
-        await fetch(
-          "https://raw.githubusercontent.com/janwilmake/cloudflare-virtual-fs-do/refs/heads/main/desired-ui.png",
-        ).then((res) => res.arrayBuffer()),
-      );
+      if (new URL(request.url).pathname === "/image") {
+        await fs.writeFile(
+          "image/desired-ui.png",
+          await fetch(
+            "https://raw.githubusercontent.com/janwilmake/cloudflare-virtual-fs-do/refs/heads/main/desired-ui.png",
+          ).then((res) => res.arrayBuffer()),
+        );
+
+        const imageBlob = await fs.readFile("image/desired-ui.png");
+
+        return new Response(imageBlob, {
+          headers: { "content-type": "image/png" },
+        });
+      }
 
       return new Response(
         JSON.stringify(
