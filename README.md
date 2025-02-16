@@ -8,3 +8,5 @@ Running main and going to localhost:3000 shows the initial version seems to be w
 Maybe I'll make a package out of this!
 
 ![](show.png)
+
+Update: `blocks.ts` contains a different implementation, but with blocks. This allows bigger files with pretty much infinite filesize. I haven't tested much but it works for a 400kb image!
