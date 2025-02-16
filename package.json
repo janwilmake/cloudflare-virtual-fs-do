@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250204.0"
+  },
+  "dependencies": {}
+}

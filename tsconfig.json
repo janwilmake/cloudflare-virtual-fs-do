@@ -1,0 +1,18 @@
+{
+  "include": ["**/*.ts"],
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"],
+    "checkJs": false,
+    "allowUmdGlobalAccess": true,
+    "target": "ESNext",
+    "allowJs": true,
+    "module": "nodenext",
+    "strict": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "nodenext",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": ["@cloudflare/workers-types"],
+    "declaration": true
+  }
+}

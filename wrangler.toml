@@ -1,0 +1,12 @@
+name = "virtualfs"
+main = "main.ts"
+compatibility_date = "2025-02-16"
+dev.port = 3000
+
+[[durable_objects.bindings]]
+name = "VIRTUAL_FS"
+class_name = "VirtualFileSystemDO"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["VirtualFileSystemDO"]
