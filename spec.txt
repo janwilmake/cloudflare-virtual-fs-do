@@ -1,0 +1,57 @@
+Cloudflare Virtual FS - Specification
+
+Overview:
+------------
+This project implements a virtual file system using Cloudflare Durable Objects (DOs)
+and SQLite as the underlying storage mechanism. The goal is to emulate a traditional
+file system API (similar to Node.js's fs module) within a Cloudflare Worker environment,
+offering asynchronous file operations that are highly responsive.
+
+Key Features:
+------------
+1. Two Implementations:
+   - Basic Version (fs.ts):
+     Implements a simple file system where file content is stored directly.
+   - Block-Based Version (blocks.ts):
+     Uses a block-based approach to support larger files by splitting file contents
+     into fixed-size blocks (default 4KB per block). This allows for handling files
+     that are larger than typical size constraints.
+
+2. Directory & File Operations:
+   - File write, read, delete operations.
+   - Directory creation, listing, and removal.
+   - Safe recursive directory creation to ensure all parent directories exist.
+
+3. Durable Object Routing:
+   - The first directory component of the file path designates the DO instance.
+   - This design provides a scalable way to distribute file operations across multiple
+     DOs.
+
+4. Transactional Operations:
+   - File operations are wrapped in storage transactions to ensure atomicity and consistency,
+     particularly when handling multiple blocks or creating directories.
+
+5. SQLite Schema and Indexing:
+   - Uses SQLite to maintain both metadata (file/directory information) and actual file
+     content or content blocks.
+   - Indexed paths for efficient directory listing and lookup operations.
+
+Usage:
+------------
+- Deploy using Wrangler with provided configuration in wrangler.toml.
+- Access the virtual file system via HTTP endpoints and use the API as illustrated in main.ts.
+- The project demonstrates writing, reading, and managing file data along with image retrieval.
+
+Notes:
+------------
+- This project is experimental and serves as a proof-of-concept; while it has been tested
+  with basic operations, further enhancements and error handling may be required for production use.
+- The design allows for extension, such as integrating a more feature-rich API or additional file operations.
+
+Future Directions:
+------------
+- Packaging as an NPM module for wider usage.
+- Extending the API to support streaming and partial file updates.
+- Enhanced performance optimizations and thorough testing against edge cases.
+
+Happy coding!
